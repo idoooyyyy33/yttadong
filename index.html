@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Azahera!</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        body {
+            background-color: #ffe6f2;
+            overflow-x: hidden;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            position: relative;
+        }
+
+        #welcome-page {
+            display: flex;
+            background: linear-gradient(135deg, #ff9ed2, #ffb6e6);
+        }
+
+        .balloon {
+            position: absolute;
+            animation: floatBalloon 6s infinite;
+            font-size: 40px;
+        }
+
+        @keyframes floatBalloon {
+            0%, 100% { transform: translate(0, 0) rotate(5deg); }
+            50% { transform: translate(10px, -20px) rotate(-5deg); }
+        }
+
+        .title {
+            font-size: 3.5em;
+            color: #ff1493;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0px #fff, 5px 5px 0px #ff9ed2;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .password-container {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+            text-align: center;
+            border: 5px dashed #ff69b4;
+        }
+
+        input {
+            padding: 15px;
+            margin: 15px;
+            border: 3px solid #ff69b4;
+            border-radius: 20px;
+            font-size: 1.2em;
+            text-align: center;
+            outline: none;
+            width: 250px;
+        }
+
+        button {
+            padding: 15px 30px;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1.2em;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background: #ff1493;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .photo-frame {
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+            transform: rotate(-5deg);
+            transition: 0.3s;
+            border: 3px solid #ff69b4;
+        }
+
+        .photo-frame:nth-child(even) {
+            transform: rotate(5deg);
+        }
+
+        .photo-frame:hover {
+            transform: scale(1.1) rotate(0);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .message-container {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            max-width: 700px;
+            margin: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+            border: 5px dashed #ff69b4;
+            position: relative;
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+            border: 2px solid #ff69b4;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+        }
+
+        .next-button {
+            margin-top: 20px;
+            background: #ff69b4;
+        }
+
+        .heart-decoration {
+            position: absolute;
+            font-size: 30px;
+            color: #ff69b4;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Music Control -->
+    <div class="music-control" onclick="toggleMusic()">
+        <i id="musicIcon" class="fas fa-play"></i>
+        <span id="musicText">Play Music</span>
+    </div>
+
+    <!-- Welcome Page -->
+    <div id="welcome-page" class="page">
+        <div class="balloon" style="top:10%; left:20%;">🎈</div>
+        <div class="balloon" style="top:30%; right:25%;">🎈</div>
+        <div class="balloon" style="top:60%; left:30%;">🎈</div>
+        <div class="heart-decoration" style="top:20%; right:20%;">❤️</div>
+        <div class="heart-decoration" style="top:70%; left:20%;">❤️</div>
+        <h1 class="title">Happy Birthday Sayang<br>Azahera Putri Zharlian! 🎉</h1>
+        <button onclick="nextPage()">Click for your surprise! ✨</button>
+    </div>
+
+    <!-- Password Page -->
+    <div id="password-page" class="page">
+        <div class="password-container">
+            <h2 style="color: #ff69b4; margin-bottom: 20px; font-size: 2em;">Enter the Magic Password! 🔮</h2>
+            <input type="password" id="password-input" placeholder="Type password here...">
+            <button onclick="checkPassword()">Open Your Gift! 🎁</button>
+        </div>
+    </div>
+
+    <!-- Scrapbook Page -->
+    <div id="scrapbook-page" class="page">
+        <h1 class="title">Your Memory Book 📸</h1>
+        <div class="photo-grid">
+            <div class="photo-frame">
+                <img src="c:\Users\HP\Downloads\2024-12-16_193426893.jpg" alt="Memory 1">
+            </div>
+            <div class="photo-frame">
+                <img src="c:\Users\HP\Downloads\2024-12-16_193412545.jpg" alt="Memory 2">
+            </div>
+            <div class="photo-frame">
+                <img src="c:\Users\HP\Downloads\WhatsApp Image 2024-12-20 at 13.35.11_e60804d8.jpg" alt="Memory 3">
+            </div>
+            <div class="photo-frame">
+                <img src="c:\Users\HP\Downloads\WhatsApp Image 2024-12-20 at 15.04.28_0fc27b63.jpg" alt="Memory 4">
+            </div>
+            <div class="photo-frame">
+                <img src="c:\Users\HP\Downloads\WhatsApp Image 2024-12-20 at 15.04.27_b5eced00.jpg" alt="Memory 5">
+            </div>
+            <div class="photo-frame">
+                <img src="c:\Users\HP\Downloads\WhatsApp Image 2024-12-20 at 15.29.18_b66d1563.jpg" alt="Memory 6">
+            </div>
+        </div>
+        <button class="next-button" onclick="nextPage()">See Your Message! 💌</button>
+    </div>
+
+    <!-- Message Page -->
+    <div id="message-page" class="page">
+        <div class="message-container">
+            <div class="heart-decoration" style="top:-20px; left:-20px;">❤️</div>
+            <div class="heart-decoration" style="bottom:-20px; right:-20px;">❤️</div>
+            <h2 style="color: #ff69b4; margin-bottom: 25px; font-size: 2.5em;">Dear Azahera! 💖</h2>
+            <p style="line-height: 1.8; font-size: 1.3em; margin-bottom: 20px;">
+                ✨ happy brithday sayangku cintaku! ✨
+            </p>
+            <p style="line-height: 1.8; font-size: 1.3em; margin-bottom: 20px;">
+                waduh tambah tua nich wkwkw
+                semoga tahun ini apapun yang sayang inginkan bisa 
+                tercapai.dimudahkan segala urusanya dan juga rezekinya.
+                tambah sayang sama keluarga dan aku juga wleeee.
+                i will never stop loving you aku selalu sayang sama kamu
+                if you need me,jika dunai ngga berpihak padamu,ketika
+                harimu tidak baik-baik saja,aku tetap disini sayang aku tetap bersedia bantu kamu 
+                jangan sungkan sungkan cerita sama aku.apapun tetangmu 
+                aku selalu suka yang penting itu ara.
+                maaf aku belum bisa jadi yang terbaik untukmu dan
+                semoga hubungan ini kita biasa berproses bersama 
+                .semua hubungan  pasti akan ada tantangan nya jika
+                akan ada badai aku minta kita lalaui bersama.
+                sayang aku cuma hanya bisa ngasi ini 🎉💖🌟
+            </p>
+            <p style="line-height: 1.8; font-size: 1.3em; color: #ff1493;">
+                Happy Birthday! 🎉<br>
+                With lots of love ❤️
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        const pages = document.querySelectorAll('.page');
+        const correctPassword = "10januari2005";
+        let audio = null;
+
+        // Initialize audio
+        function initAudio() {
+            audio = new Audio('lib/hbd.mp3');
+            audio.loop = true;
+        }
+
+        function toggleMusic() {
+            if (!audio) {
+                initAudio();
+            }
+            
+            const musicIcon = document.getElementById('musicIcon');
+            const musicText = document.getElementById('musicText');
+            
+            if (audio.paused) {
+                audio.play().catch(error => {
+                    console.log('Audio playback failed:', error);
+                });
+                musicIcon.className = 'fas fa-pause';
+                musicText.textContent = 'Pause Music';
+            } else {
+                audio.pause();
+                musicIcon.className = 'fas fa-play';
+                musicText.textContent = 'Play Music';
+            }
+        }
+
+        function nextPage() {
+            pages[currentPage].style.display = 'none';
+            currentPage++;
+            if (currentPage >= pages.length) {
+                currentPage = 0;
+            }
+            pages[currentPage].style.display = 'flex';
+        }
+
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            if (input === correctPassword) {
+                nextPage();
+            } else {
+                alert('Oops! Wrong password! Try again! 🎈');
+            }
+        }
+
+        // Handle keyboard events for password input
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('password-input');
+            if (passwordInput) {
+                passwordInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        checkPassword();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
